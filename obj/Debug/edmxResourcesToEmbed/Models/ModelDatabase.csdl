@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GoodChatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="user_password" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Profile_Images" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="About_me" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="membership_date" Type="DateTime" />
+    <NavigationProperty Name="explore" Relationship="Self.FK__explore__Userid__3F466844" FromRole="Account" ToRole="explore" />
+    <NavigationProperty Name="friends" Relationship="Self.FK__friends__fid__398D8EEE" FromRole="Account" ToRole="friends" />
+    <NavigationProperty Name="friends1" Relationship="Self.FK__friends__Userid__38996AB5" FromRole="Account" ToRole="friends" />
+    <NavigationProperty Name="Mess" Relationship="Self.FK__Mess__fid__4316F928" FromRole="Account" ToRole="Mess" />
+    <NavigationProperty Name="Mess1" Relationship="Self.FK__Mess__Userid__4222D4EF" FromRole="Account" ToRole="Mess" />
+  </EntityType>
+  <EntityType Name="AdmLoginServices">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="explore">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="Self.FK__explore__Userid__3F466844" FromRole="explore" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="friends">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="Int32" />
+    <Property Name="fid" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="Self.FK__friends__fid__398D8EEE" FromRole="friends" ToRole="Account" />
+    <NavigationProperty Name="Account1" Relationship="Self.FK__friends__Userid__38996AB5" FromRole="friends" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="DateTime" />
+    <Property Name="authority" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Mess">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="Int32" />
+    <Property Name="fid" Type="Int32" />
+    <Property Name="SetMessages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="DateTime" />
+    <NavigationProperty Name="Account" Relationship="Self.FK__Mess__fid__4316F928" FromRole="Mess" ToRole="Account" />
+    <NavigationProperty Name="Account1" Relationship="Self.FK__Mess__Userid__4222D4EF" FromRole="Mess" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__explore__Userid__3F466844">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="explore" Type="Self.explore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="explore">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__friends__fid__398D8EEE">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="friends" Type="Self.friends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="friends">
+        <PropertyRef Name="fid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__friends__Userid__38996AB5">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="friends" Type="Self.friends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="friends">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mess__fid__4316F928">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Mess" Type="Self.Mess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Mess">
+        <PropertyRef Name="fid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mess__Userid__4222D4EF">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Mess" Type="Self.Mess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Mess">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GoodChatEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Account" EntityType="Self.Account" />
+    <EntitySet Name="AdmLoginServices" EntityType="Self.AdmLoginServices" />
+    <EntitySet Name="explore" EntityType="Self.explore" />
+    <EntitySet Name="friends" EntityType="Self.friends" />
+    <EntitySet Name="Log" EntityType="Self.Log" />
+    <EntitySet Name="Mess" EntityType="Self.Mess" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK__explore__Userid__3F466844" Association="Self.FK__explore__Userid__3F466844">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="explore" EntitySet="explore" />
+    </AssociationSet>
+    <AssociationSet Name="FK__friends__fid__398D8EEE" Association="Self.FK__friends__fid__398D8EEE">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="friends" EntitySet="friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__friends__Userid__38996AB5" Association="Self.FK__friends__Userid__38996AB5">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="friends" EntitySet="friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mess__fid__4316F928" Association="Self.FK__Mess__fid__4316F928">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Mess" EntitySet="Mess" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mess__Userid__4222D4EF" Association="Self.FK__Mess__Userid__4222D4EF">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Mess" EntitySet="Mess" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

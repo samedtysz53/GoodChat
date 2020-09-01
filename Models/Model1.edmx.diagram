@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="66f5b46e138b4a648fe96bc28e1889dc" Name="Diagram1">
+        <EntityTypeShape EntityType="GoodChatModel.Account" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GoodChatModel.AdmLoginServices" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GoodChatModel.explore" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GoodChatModel.friends" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GoodChatModel.Hobby" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GoodChatModel.Log" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GoodChatModel.Mess" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="GoodChatModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="GoodChatModel.FK__explore__Userid__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="GoodChatModel.FK__friends__fid__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="GoodChatModel.FK__friends__Userid__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="GoodChatModel.FK__Mess__fid__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="GoodChatModel.FK__Mess__Userid__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="GoodChatModel.FK_Hobby_Account" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

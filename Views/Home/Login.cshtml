@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css"/>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container bg-dark text-white alert">GoodChat</div>
+
+    <div class="col-sm-12 col-md-12 col-xl-12">
+
+        <div class="col-2 m-auto      text-white" style="height:150px">
+
+            @using (Html.BeginForm("Login","Home",FormMethod.Post))
+            {
+
+            <input type="email" name="mail" class="form-control" placeholder="e-posta Giriniz" />
+            <input type="password" name="pass" class="form-control mt-2" placeholder="Parola Giriniz" />
+            <div class="text-danger"> @ViewBag.error</div>
+            <input type="submit" class="form-control btn-danger mt-2" value="Giriş yap" />
+            }
+        </div>
+        
+    </div>
+
+
+
+
+
+
+
+
+</body>
+</html>

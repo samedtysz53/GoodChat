@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GoodChatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="15" />
+    <Property Name="user_password" Type="nvarchar" MaxLength="15" />
+    <Property Name="Profile_Images" Type="nvarchar" MaxLength="1" />
+    <Property Name="About_me" Type="nvarchar(max)" />
+    <Property Name="age" Type="int" />
+    <Property Name="gender" Type="nvarchar" MaxLength="10" />
+    <Property Name="membership_date" Type="datetime" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="mail" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AdmLoginServices">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="15" />
+    <Property Name="password" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="explore">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Userid" Type="int" />
+  </EntityType>
+  <EntityType Name="friends">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Userid" Type="int" />
+    <Property Name="fid" Type="int" />
+  </EntityType>
+  <EntityType Name="Hobby">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="User_id" Type="int" Nullable="false" />
+    <Property Name="Hobby" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="15" />
+    <Property Name="Time" Type="datetime" />
+    <Property Name="authority" Type="int" />
+  </EntityType>
+  <EntityType Name="Mess">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Userid" Type="int" />
+    <Property Name="fid" Type="int" />
+    <Property Name="SetMessages" Type="nvarchar(max)" />
+    <Property Name="Time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__explore__Userid__3F466844">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="explore" Type="Self.explore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="explore">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__friends__fid__398D8EEE">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="friends" Type="Self.friends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="friends">
+        <PropertyRef Name="fid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__friends__Userid__38996AB5">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="friends" Type="Self.friends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="friends">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mess__fid__4316F928">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Mess" Type="Self.Mess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Mess">
+        <PropertyRef Name="fid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mess__Userid__4222D4EF">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Mess" Type="Self.Mess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Mess">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hobby_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Hobby" Type="Self.Hobby" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Hobby">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GoodChatModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdmLoginServices" EntityType="Self.AdmLoginServices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="explore" EntityType="Self.explore" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="friends" EntityType="Self.friends" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hobby" EntityType="Self.Hobby" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mess" EntityType="Self.Mess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__explore__Userid__3F466844" Association="Self.FK__explore__Userid__3F466844">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="explore" EntitySet="explore" />
+    </AssociationSet>
+    <AssociationSet Name="FK__friends__fid__398D8EEE" Association="Self.FK__friends__fid__398D8EEE">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="friends" EntitySet="friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__friends__Userid__38996AB5" Association="Self.FK__friends__Userid__38996AB5">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="friends" EntitySet="friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mess__fid__4316F928" Association="Self.FK__Mess__fid__4316F928">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Mess" EntitySet="Mess" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mess__Userid__4222D4EF" Association="Self.FK__Mess__Userid__4222D4EF">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Mess" EntitySet="Mess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hobby_Account" Association="Self.FK_Hobby_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Hobby" EntitySet="Hobby" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

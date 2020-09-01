@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.css"/>
+    <meta name="viewport" content="width=device-width" />
+    <title>SavesLogin</title>
+</head>
+<body class="container">
+    @using(Html.BeginForm("SavesLogin", "Home",FormMethod.Post)) {
+    <div class="col-sm-12 col-md-12 col-xl-12 bg-dark text-white alert">GoodChat</div>
+    <div class="form-group mt-5">
+        <input type="text" placeholder="kullanıcı adı:" name="user" id="user" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="tel" placeholder="telefon :" name="tel" id="tel" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="password" placeholder="parola  :" name="pass" id="pass"  class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="password" placeholder="parola tekrar:" name="passTek" id="passTek"  class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="email" placeholder="e-posta :" name="mail" id="mail"  class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="checkbox" /> <a href="~/Home/sozlesme.cshtml">Kayıt olma sözleşmesini</a> okudum ve kabul ediyorum
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Kayıt ol" class="form-control btn-danger" />
+    </div>
+    }
+</body>
+</html>
